@@ -17,7 +17,7 @@ function Product() {
     console.log(productName);
 
     useEffect(() => {
-        document.title = productName + ' - Taberna';
+        document.title = productName + ' product - Taberna';
     }, []);
 
     if (isLoading) {
