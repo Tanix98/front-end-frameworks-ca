@@ -111,7 +111,7 @@ export function reducer(state, action) {
 
 function Checkout() {
     useEffect(() => {
-        document.title = 'Shopping cart - Taberna';
+        document.title = 'Shopping cart | Tabernia';
     }, []);
 
     const [state, dispatch] = useReducer(reducer, initialState);

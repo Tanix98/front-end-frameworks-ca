@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 function Contact() {
     useEffect(() => {
-        document.title = 'Contact us - Taberna';
+        document.title = 'Contact us | Tabernia';
     }, []);
 
     const [userName, setUserName] = useState('');

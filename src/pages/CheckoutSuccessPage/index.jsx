@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 function CheckoutSuccess() {
     useEffect(() => {
-        document.title = 'Checkout success - Taberna';
+        document.title = 'Checkout success | Tabernia';
     }, []);
 
     return (

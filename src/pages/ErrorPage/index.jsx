@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 function ErrorPage() {
     useEffect(() => {
-        document.title = 'Page does not exist - Taberna';
+        document.title = 'Page does not exist | Tabernia';
     }, []);
     return (
         <div id='main'>

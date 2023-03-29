@@ -17,8 +17,8 @@ function Product() {
     console.log(productName);
 
     useEffect(() => {
-        document.title = productName + ' product - Taberna';
-    }, []);
+        document.title = productName + ' | Tabernia';
+    });
 
     if (isLoading) {
         return (
@@ -48,8 +48,8 @@ function Product() {
     let productPrice = data.price + ' kr';
     let productPriceDiscount = '';
     if (data.discountedPrice < data.price) {
-        productPrice = <s>{data.price} kr</s>;
-        productPriceDiscount = data.discountedPrice + ' kr discount!';
+        productPrice = <s className='text-muted'>{data.price} kr</s>;
+        productPriceDiscount = data.discountedPrice + ' kr';
     }
 
     return (
@@ -131,7 +131,7 @@ function Product() {
                     </div>
                 </div>
             </div>
-            <div className='d-md-none product-width-mobile m-auto bg-white text-break'>
+            <div className='d-md-none product-width-mobile m-auto text-break'>
                 <div
                     className='d-flex flex-column justify-content-center align-items-center p-3'
                     id='product-img-container-1'
