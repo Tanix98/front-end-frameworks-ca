@@ -40,7 +40,7 @@ function Home() {
             setFilteredData(newFilter);
         }
         setSearchTerm(searchWord);
-        console.log('searchTerm is: ' + searchTerm);
+        console.log('homePage searchterm: ' + searchTerm);
     }
 
     function search() {

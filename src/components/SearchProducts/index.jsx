@@ -16,7 +16,7 @@ function SearchProducts() {
 
     useEffect(() => {
         console.log('useEffect has run');
-        console.log('searchTerm has changed to: ' + searchTerm);
+        console.log('searchProducts searchterm: ' + searchTerm);
     }, [searchTerm]);
 
     if (isLoading) {
