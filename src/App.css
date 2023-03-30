@@ -72,7 +72,7 @@ a:hover {
 }
 
 .products-container {
-    opacity: 0.9;
+    opacity: 1;
 }
 
 .products-container:hover {
@@ -151,6 +151,20 @@ a:hover {
     -webkit-line-clamp: 4;
     line-clamp: 4;
     -webkit-box-orient: vertical;
+}
+
+#search-results {
+    top: 36px;
+}
+
+#search-list {
+    max-height: 160px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.search-list-item:hover {
+    background: rgb(225, 225, 225);
 }
 
 .lds-dual-ring {

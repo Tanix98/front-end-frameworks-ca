@@ -1,35 +1,23 @@
 import useApi from '../../api/useApi/index';
+import SearchContext from '../../pages/HomePage/index';
 import { reducer, initialState } from '../../pages/CheckoutPage/index';
-import { SearchContext } from '../SearchBar/index';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import { useReducer, useEffect, useContext } from 'react';
+import { useReducer, useContext, useEffect } from 'react';
 
 function SearchProducts() {
     const searchTerm = useContext(SearchContext);
 
-    let productList = '';
+    const [dispatch] = useReducer(reducer, initialState);
 
     const { data, isLoading, isError } = useApi(
         'https://api.noroff.dev/api/v1/online-shop'
     );
 
-    productList = data;
-
-    useEffect(() => {
-        if (searchTerm === undefined) {
-            console.log('render all products');
-        } else {
-            console.log('searchproducts searchterm: ' + searchTerm);
-            console.log('render filtered products from search term');
-        }
-    }, [searchTerm]);
-
     useEffect(() => {
         console.log('useEffect has run');
+        console.log('searchTerm has changed to: ' + searchTerm);
     }, [searchTerm]);
-
-    const [dispatch] = useReducer(reducer, initialState);
 
     if (isLoading) {
         return (
@@ -48,17 +36,10 @@ function SearchProducts() {
         );
     }
 
-    function checkSearchTerm() {
-        console.log(
-            'Check what searchterm from searchproducts is: ' + searchTerm
-        );
-    }
-
     // In return the product's id is added to the router link's path that the card elements are wrapped in
     return (
         <div className='d-flex justify-content-center flex-wrap gap-4 text-break'>
-            <Button onClick={checkSearchTerm}>Check searchterm</Button>
-            {productList.map((product) => (
+            {data.map((product) => (
                 <div className='card-width mt-3 bg-white' key={product.id}>
                     <Link
                         to={{

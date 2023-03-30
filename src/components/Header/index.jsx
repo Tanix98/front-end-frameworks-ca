@@ -36,7 +36,7 @@ function Header() {
                                         : 'nav_link text-muted text-decoration-none'
                                 }
                             >
-                                Home
+                                Store
                             </NavLink>
                             <NavLink
                                 to='/contact'
