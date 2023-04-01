@@ -1,5 +1,5 @@
 import useApi from '../../api/useApi/index';
-import SearchProducts from '../../components/SearchProducts/index';
+import RenderProducts from '../../components/RenderProducts/index';
 import { useEffect, useState, createContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -18,7 +18,11 @@ function Home() {
     // searchbar
 
     const [filteredData, setFilteredData] = useState([]);
+    const [searchWord, setSearchWord] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
+    /*const [focused, setFocused] = useState(false);
+    const onFocus = () => setFocused(true);
+    const onBlur = () => setFocused(false);*/
 
     function handleKeyDown(event) {
         if (event.keyCode === 13) {
@@ -39,27 +43,27 @@ function Home() {
         } else {
             setFilteredData(newFilter);
         }
-        setSearchTerm(searchWord);
-        console.log('homePage searchterm: ' + searchTerm);
+        setSearchWord(searchWord);
     }
 
     function search() {
-        console.log('search clicked');
+        setSearchTerm(searchWord);
     }
 
     return (
         <div id='main'>
-            <h2 className='text-center mb-4'>Products</h2>
-            <div className='mb-1 d-flex justify-content-center position-relative'>
+            <div className='mb-2 d-flex justify-content-center position-relative'>
                 <Col xs={12} sm={6} md={4}>
                     <Form className='d-flex'>
                         <Form.Control
                             type='search'
                             placeholder='Search'
                             aria-label='Search'
-                            value={searchTerm}
+                            value={searchWord}
                             onChange={handleFilter}
                             onKeyDown={handleKeyDown}
+                            /*onFocus={onFocus}
+                            onBlur={onBlur}*/
                         />
                         <Button variant='dark' onClick={search}>
                             Search
@@ -83,7 +87,7 @@ function Home() {
                                         }}
                                         className='search-list-item text-decoration-none text-dark d-block p-2'
                                         target='_blank'
-                                        key={value.id}
+                                        key={key}
                                     >
                                         {value.title}
                                     </Link>
@@ -93,10 +97,8 @@ function Home() {
                     </Col>
                 )}
             </div>
-            <SearchContext.Provider value={searchTerm}>
-                <div>
-                    <SearchProducts searchWord='' />
-                </div>
+            <SearchContext.Provider value={{ searchTerm }}>
+                <RenderProducts />
             </SearchContext.Provider>
         </div>
     );

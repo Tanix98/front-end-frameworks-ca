@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { clearCart } from '../../slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
 function CheckoutSuccess() {
     useEffect(() => {
         document.title = 'Checkout success | Tabernia';
     }, []);
+
+    const dispatch = useDispatch();
+    dispatch(clearCart());
 
     return (
         <div id='main'>

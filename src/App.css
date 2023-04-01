@@ -33,6 +33,9 @@ a:hover {
     margin-bottom: 380px !important;
     padding-left: 15px;
     padding-right: 15px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #footer {
@@ -53,8 +56,12 @@ a:hover {
     color: #a2a8ae !important;
 }
 
-.card-width {
+.product-card {
     width: 280px;
+}
+
+.product-card:hover {
+    background-color: rgb(252, 252, 252) !important;
 }
 
 .product-width-mobile {
@@ -124,6 +131,10 @@ a:hover {
     margin-top: -70px;
 }
 
+.product-card {
+    width: 280px;
+}
+
 .text-shadow {
     text-shadow: rgb(0, 0, 0) 0px 0 6px;
 }
@@ -167,6 +178,41 @@ a:hover {
     background: rgb(225, 225, 225);
 }
 
+.product-card-checkout {
+    height: 160px;
+    position: relative;
+}
+
+.products-img-container-checkout {
+    height: 128px;
+    width: 128px;
+}
+
+.products-img-checkout {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.product-title-checkout {
+    width: 200px;
+}
+
+.product-price-checkout {
+    width: 200px;
+}
+
+.product-quantity-checkout {
+    width: 200px;
+}
+
+.position-absolute-center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .lds-dual-ring {
     display: inline-block;
 }
@@ -199,6 +245,22 @@ a:hover {
     }
     #main {
         margin-bottom: 500px !important;
+    }
+    .product-card-checkout {
+        height: 100%;
+    }
+    .product-title-checkout {
+        width: auto;
+    }
+    .position-absolute-center {
+        position: static;
+        left: 0;
+        right: 0;
+        margin: 0;
+        text-align: center;
+    }
+    .product-quantity-checkout {
+        width: auto;
     }
 }
 

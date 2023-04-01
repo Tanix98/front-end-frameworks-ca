@@ -3,8 +3,12 @@ import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../slices/cartSlice';
 
 function Product() {
+    const dispatch = useDispatch();
+
     // Gets the product id from the url parameter, which is then used to fetch that specific product data
     let { id } = useParams();
     let productRating = '';
@@ -14,8 +18,6 @@ function Product() {
     );
 
     const productName = data.title;
-    console.log(productName);
-
     useEffect(() => {
         document.title = productName + ' | Tabernia';
     });
@@ -76,7 +78,10 @@ function Product() {
                             <p className='mt-1'>{productPrice}</p>
                             <p className='mt-1'>{productPriceDiscount}</p>
                         </div>
-                        <Button variant='primary my-2 shadow-sm'>
+                        <Button
+                            variant='primary my-2 shadow-sm'
+                            onClick={() => dispatch(addToCart(data))}
+                        >
                             Add to cart
                         </Button>
                         <p className='mb-2'>{data.description}</p>
@@ -150,7 +155,13 @@ function Product() {
                         <p>{productPrice}</p>
                         <p>{productPriceDiscount}</p>
                     </div>
-                    <Button variant='primary mt-2 shadow'>Add to cart</Button>
+                    <Button
+                        variant='primary'
+                        className='mt-2 shadow'
+                        onClick={() => dispatch(addToCart(data))}
+                    >
+                        Add to cart
+                    </Button>
                     <p className='mt-2'>{data.description}</p>
                     <div className='d-flex flex-column gap-1 mt-2'>
                         <div>

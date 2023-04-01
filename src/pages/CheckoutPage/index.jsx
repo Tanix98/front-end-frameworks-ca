@@ -1,4 +1,239 @@
-import { useEffect, useReducer } from 'react';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    increment,
+    decrement,
+    clearCart,
+    deleteItem,
+} from '../../slices/cartSlice';
+
+function Checkout() {
+    useEffect(() => {
+        document.title = 'Shopping cart | Tabernia';
+    }, []);
+
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cart);
+
+    if (cart.length === 0) {
+        return (
+            <div id='main'>
+                <h2 className='mb-5 w-100'>Shopping cart</h2>
+                <hr />
+                <div className='d-flex flex-column align-items-center'>
+                    <div className='d-flex justify-content-between mt-5 w-100'>
+                        <div>
+                            <Button
+                                variant='danger'
+                                className='mt-2 shadow'
+                                onClick={() => dispatch(clearCart())}
+                                type='button'
+                            >
+                                Clear cart
+                            </Button>
+                        </div>
+                        <div>
+                            <div className='d-flex justify-content-end gap-2 mb-4 me-2'>
+                                <h5>Subtotal:</h5>
+                                <h5>
+                                    {Math.floor(
+                                        cart
+                                            .map(
+                                                (product) =>
+                                                    product.discountedPrice *
+                                                    product.quantity
+                                            )
+                                            .reduceRight(
+                                                (acc, cur) => acc + cur,
+                                                0
+                                            ) * 100
+                                    ) / 100}{' '}
+                                    kr
+                                </h5>
+                            </div>
+                            <Link
+                                className='btn btn-success btn-lg shadow'
+                                role='button'
+                                to='/checkoutsuccess'
+                            >
+                                Continue to checkout
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div id='main'>
+                <h2 className='mb-5'>Shopping cart</h2>
+                <div className='d-flex justify-content-between px-4'>
+                    <h5>Product</h5>
+                    <h5 className='position-absolute-center'>Quantity</h5>
+                    <h5>Price</h5>
+                </div>
+                <hr />
+                <div className='d-flex flex-column gap-4 text-break'>
+                    {cart.map((product, key) => (
+                        <div
+                            className='product-card-checkout d-block d-lg-flex align-items-center flex-wrap py-3 px-4 bg-white'
+                            key={key}
+                        >
+                            <div className='d-block d-lg-flex align-items-center gap-3 me-auto'>
+                                <div className='products-img-container-checkout m-auto d-flex justify-content-center align-items-center'>
+                                    <img
+                                        className='products-img-checkout shadow hover-overlay'
+                                        variant='top'
+                                        src={product.imageUrl}
+                                        alt={product.title}
+                                    />
+                                </div>
+                                <div className='product-title-checkout text-center'>
+                                    <h5>{product.title}</h5>
+                                </div>
+                            </div>
+                            <div className='product-quantity-checkout position-absolute-center d-flex justify-content-center'>
+                                <div className='d-inline-flex align-items-center border'>
+                                    <Button
+                                        onClick={() =>
+                                            dispatch(increment(product.id))
+                                        }
+                                        type='button'
+                                    >
+                                        +
+                                    </Button>
+                                    <p className='px-3'>
+                                        {product.quantity > 1
+                                            ? product.quantity
+                                            : 1}
+                                    </p>
+                                    <Button
+                                        onClick={() =>
+                                            dispatch(decrement(product.id))
+                                        }
+                                        type='button'
+                                    >
+                                        -
+                                    </Button>
+                                </div>
+                            </div>
+                            <div className='product-price-checkout d-flex flex-wrap ms-lg-auto text-center text-lg-auto text-lg-end m-auto m-sm-0'>
+                                {product.price > product.discountedPrice && (
+                                    <div className='ms-0 ms-lg-auto'>
+                                        <div className='d-flex gap-2'>
+                                            <s className='text-muted ms-auto'>
+                                                <p>
+                                                    {((Math.floor(
+                                                        product.price * 100
+                                                    ) /
+                                                        100) *
+                                                        Math.floor(
+                                                            product.quantity *
+                                                                100
+                                                        )) /
+                                                        100}
+                                                    kr
+                                                </p>
+                                            </s>
+                                            <p>
+                                                {((Math.floor(
+                                                    product.discountedPrice *
+                                                        100
+                                                ) /
+                                                    100) *
+                                                    Math.floor(
+                                                        product.quantity * 100
+                                                    )) /
+                                                    100}
+                                                kr
+                                            </p>
+                                        </div>
+                                        <Button
+                                            className='mt-2 p-0 link-danger'
+                                            variant='link'
+                                            onClick={() =>
+                                                dispatch(deleteItem(product.id))
+                                            }
+                                        >
+                                            Remove item
+                                        </Button>
+                                    </div>
+                                )}
+                                {product.discountedPrice === product.price && (
+                                    <div className='ms-auto'>
+                                        <p>
+                                            {((Math.floor(product.price * 100) /
+                                                100) *
+                                                Math.floor(
+                                                    product.quantity * 100
+                                                )) /
+                                                100}
+                                            kr
+                                        </p>
+                                        <Button
+                                            className='mt-2 p-0 link-danger'
+                                            variant='link'
+                                            onClick={() =>
+                                                dispatch(deleteItem(product.id))
+                                            }
+                                        >
+                                            Remove item
+                                        </Button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className='d-flex justify-content-between mt-5'>
+                    <div>
+                        <Button
+                            variant='danger'
+                            className='mt-2 shadow'
+                            onClick={() => dispatch(clearCart())}
+                            type='button'
+                        >
+                            Clear cart
+                        </Button>
+                    </div>
+                    <div>
+                        <div className='d-flex justify-content-end gap-2 mb-4 me-2'>
+                            <h5>Subtotal:</h5>
+                            <h5>
+                                {Math.floor(
+                                    cart
+                                        .map(
+                                            (product) =>
+                                                product.discountedPrice *
+                                                product.quantity
+                                        )
+                                        .reduceRight(
+                                            (acc, cur) => acc + cur,
+                                            0
+                                        ) * 100
+                                ) / 100}{' '}
+                                kr
+                            </h5>
+                        </div>
+                        <Link
+                            className='btn btn-success btn-lg shadow'
+                            role='button'
+                            to='/checkoutsuccess'
+                        >
+                            Continue to checkout
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default Checkout;
+
+/*import { useEffect, useReducer, useState } from 'react';
 
 const products = [
     {
@@ -110,6 +345,8 @@ export function reducer(state, action) {
 }
 
 function Checkout() {
+    const [cart, setFilteredData] = useState([]);
+
     useEffect(() => {
         document.title = 'Shopping cart | Tabernia';
     }, []);
@@ -161,10 +398,7 @@ function Checkout() {
                         <div key={product.id}>{product.discountedPrice}</div>
                     ))}
                 </div>
-                <div className=''>
-                    <p>Total:</p>
-                    <div>{state.total.toFixed(2)} kr</div>
-                </div>
+
                 <div className='d-flex flex-column'>
                     {state.cart.map((product) => (
                         <button
@@ -174,7 +408,7 @@ function Checkout() {
                                     payload: product,
                                 })
                             }
-                            className='btn btn-danger mb-1'
+                            className='btn mb-1'
                             type='button'
                         >
                             &times;
@@ -182,8 +416,12 @@ function Checkout() {
                     ))}
                 </div>
             </div>
+            <div className='d-flex justify-content-center gap-1'>
+                <p>Total:</p>
+                <div>{state.total.toFixed(2)} kr</div>
+            </div>
         </div>
     );
 }
 
-export default Checkout;
+export default Checkout;*/
