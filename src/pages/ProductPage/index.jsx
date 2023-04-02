@@ -1,3 +1,4 @@
+import './styles.css';
 import useApi from '../../api/useApi/index';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -110,7 +111,7 @@ function Product() {
                             </div>
                             <div>
                                 <Link onClick={handleClickScroll}>
-                                    See reviews{' '}
+                                    See reviews
                                 </Link>
                             </div>
                         </div>

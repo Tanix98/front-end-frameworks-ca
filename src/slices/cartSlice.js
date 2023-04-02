@@ -43,22 +43,16 @@ const cartSlice = createSlice({
         decrement: (state, { payload }) => {
             return state.map((item) => {
                 if (item.id === payload) {
-                    /*if (item.quantity < 1) {
-                        return state.splice(item, 1);
-                    } else {*/
-                    return {
-                        ...item,
-                        quantity: item.quantity - 1,
-                    };
-                    /*}*/
+                    if (item.quantity === 1) {
+                        return item;
+                    } else {
+                        return {
+                            ...item,
+                            quantity: item.quantity - 1,
+                        };
+                    }
                 }
-                /*if (item.id === payload && item.quantity === 0) {
-                    state.push({
-                        ...payload,
-                        quantity: 1,
-                    });
-                }*/
-                return state;
+                return item;
             });
         },
         deleteItem: (state, action) => {
@@ -82,6 +76,23 @@ const cartReducer = cartSlice.reducer;
 export default cartReducer;
 
 /*
+
+decrement: (state, { payload }) => {
+            return state.map((item) => {
+                if (item.id === payload) {
+                    if (item.quantity < 1) {
+                        return state.splice(item, 1);
+                    } else {
+                    return {
+                        ...item,
+                        quantity: item.quantity - 1,
+                    };
+                }
+                
+                }
+                return state;
+            });
+        },
 
 import { createSlice } from '@reduxjs/toolkit';
 

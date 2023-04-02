@@ -1,3 +1,4 @@
+import './styles.css';
 import useApi from '../../api/useApi/index';
 import { SearchContext } from '../../pages/HomePage/index';
 import Button from 'react-bootstrap/Button';
@@ -60,7 +61,7 @@ function RenderProducts() {
                                     {product.price >
                                         product.discountedPrice && (
                                         <img
-                                            className='products-img shadow hover-overlay'
+                                            className='products-img shadow'
                                             variant='top'
                                             src={product.imageUrl}
                                             alt={product.title}
@@ -69,7 +70,7 @@ function RenderProducts() {
                                     {product.discountedPrice ===
                                         product.price && (
                                         <img
-                                            className='products-img shadow hover-overlay'
+                                            className='products-img shadow'
                                             variant='top'
                                             src={product.imageUrl}
                                             alt={product.title}

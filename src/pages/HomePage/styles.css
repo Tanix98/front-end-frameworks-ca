@@ -1,0 +1,13 @@
+#search-results {
+    top: 36px;
+}
+
+#search-list {
+    max-height: 160px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.search-list-item:hover {
+    background: rgb(225, 225, 225);
+}

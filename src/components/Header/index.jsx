@@ -1,9 +1,9 @@
+import './styles.css';
 import { Link, NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
 
 // Use the routers to navigate to different pages, cannot use anchor tags as React is a SPA
 // Link to routers in the header, which will navigate the user to different pages when clicked on

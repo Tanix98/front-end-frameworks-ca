@@ -1,3 +1,4 @@
+import './styles.css';
 import useApi from '../../api/useApi/index';
 import RenderProducts from '../../components/RenderProducts/index';
 import { useEffect, useState, createContext } from 'react';

@@ -1,3 +1,4 @@
+import './styles.css';
 import { Link } from 'react-router-dom';
 import CopyrightYear from '../CopyrightYear/index';
 

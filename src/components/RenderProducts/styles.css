@@ -1,0 +1,29 @@
+.product-card {
+    width: 280px;
+}
+
+.product-card:hover {
+    background-color: rgb(252, 252, 252) !important;
+}
+
+.products-img-container {
+    max-width: 280px;
+    height: 235px;
+}
+
+.products-img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.products-container {
+    opacity: 1;
+}
+
+.products-container:hover {
+    opacity: 1;
+}
+
+.view-product-link:hover {
+    color: rgb(60, 164, 255) !important;
+}

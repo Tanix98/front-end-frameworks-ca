@@ -1,0 +1,8 @@
+@media only screen and (max-width: 991px) {
+    #basic-navbar-nav {
+        margin-top: 10px;
+    }
+    a.nav_link {
+        font-size: 20px;
+    }
+}
