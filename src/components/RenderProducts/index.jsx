@@ -36,22 +36,19 @@ function RenderProducts() {
     // In return the product's id is added to the router link's path that the card elements are wrapped in
     return (
         <div className='d-flex justify-content-center flex-wrap gap-4 text-break'>
-            {data //eslint-disable-line
+            {data
                 .filter((product) => {
-                    //eslint-disable-line
                     if (searchTerm === '') {
-                        //eslint-disable-line
-                        return product; //eslint-disable-line
-                    } else if (
-                        //eslint-disable-line
-                        product.title //eslint-disable-line
-                            .toLowerCase() //eslint-disable-line
-                            .includes(searchTerm.toLowerCase()) //eslint-disable-line
+                        return product;
+                    }
+                    if (
+                        product.title
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase())
                     ) {
-                        //eslint-disable-line
-                        return product; //eslint-disable-line
-                    } //eslint-disable-line
-                }) //eslint-disable-line
+                        return product;
+                    }
+                })
                 .map((product, key) => (
                     <div className='product-card mt-3 bg-white p-3' key={key}>
                         <Link

@@ -87,7 +87,6 @@ function Home() {
                                             pathname: `/product/${value.id}`,
                                         }}
                                         className='search-list-item text-decoration-none text-dark d-block p-2'
-                                        target='_blank'
                                         key={key}
                                     >
                                         {value.title}
