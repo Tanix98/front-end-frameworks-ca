@@ -227,7 +227,8 @@ function Checkout() {
                         </div>
                     ))}
                 </div>
-                <div className='d-flex flex-column flex-sm-row align-items-center align-items-sm-start gap-4 mt-4 mt-sm-5'>
+                <hr className='d-sm-none' />
+                <div className='d-flex flex-column flex-sm-row align-items-center align-items-sm-start gap-4 mt-sm-5'>
                     <div>
                         <Button
                             variant='danger'
