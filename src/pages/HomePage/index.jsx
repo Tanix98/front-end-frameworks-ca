@@ -71,7 +71,7 @@ function Home() {
                         </Button>
                     </Form>
                 </Col>
-                {filteredData.length != 0 && (
+                {filteredData.length > 0 && (
                     <Col
                         xs={12}
                         sm={6}
