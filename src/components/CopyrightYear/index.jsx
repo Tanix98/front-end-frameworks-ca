@@ -1,3 +1,5 @@
+// Pass in the year prop with the number value from the currentYear variable
+
 function GetCurrentYear(props) {
     return <p>Copyright © {props.year}</p>;
 }

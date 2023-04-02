@@ -102,6 +102,18 @@ function Contact() {
         }
     }
 
+    /*
+    Old text inputs, can be reduced to single function if name properties are used
+    function onUserEmailAddressChange(event) {
+        setUserEmailAddress(event.target.value);
+        console.log(userEmailAddress);
+    }
+
+    function onUserMessageChange(event) {
+        setUserMessage(event.target.value);
+        console.log(userMessage);
+    }*/
+
     function onTextInputChange(event) {
         const value = event.target.value;
         if (event.target.name === 'name') {

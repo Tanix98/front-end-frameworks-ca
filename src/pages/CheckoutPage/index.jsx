@@ -55,13 +55,6 @@ function Checkout() {
                                 </h5>
                             </div>
                         </div>
-                        <Link
-                            className='btn btn-success btn-lg shadow mt-2'
-                            role='button'
-                            to='/checkoutsuccess'
-                        >
-                            Continue to checkout
-                        </Link>
                     </div>
                 </div>
             </div>
