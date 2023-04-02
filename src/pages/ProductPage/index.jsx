@@ -10,7 +10,6 @@ import { addToCart } from '../../slices/cartSlice';
 function Product() {
     const dispatch = useDispatch();
 
-    // Gets the product id from the url parameter, which is then used to fetch that specific product data
     let { id } = useParams();
     let productRating = '';
 
@@ -40,7 +39,6 @@ function Product() {
         );
     }
 
-    // Scrolls to the product reviews section when clicked on
     const handleClickScroll = () => {
         const element = document.getElementById('product-reviews');
         if (element) {

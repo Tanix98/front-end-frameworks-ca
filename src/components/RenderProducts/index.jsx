@@ -33,7 +33,6 @@ function RenderProducts() {
         );
     }
 
-    // In return the product's id is added to the router link's path that the card elements are wrapped in
     return (
         <div className='d-flex justify-content-center flex-wrap gap-4 text-break'>
             {data
@@ -48,6 +47,7 @@ function RenderProducts() {
                     ) {
                         return product;
                     }
+                    return false;
                 })
                 .map((product, key) => (
                     <div className='product-card mt-3 bg-white p-3' key={key}>

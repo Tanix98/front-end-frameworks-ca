@@ -5,9 +5,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { useSelector } from 'react-redux';
 
-// Use the routers to navigate to different pages, cannot use anchor tags as React is a SPA
-// Link to routers in the header, which will navigate the user to different pages when clicked on
-
 function Header() {
     const shoppingCart = useSelector((state) => state.cart);
     const shoppingCartQuantity = shoppingCart.map((cartItem) => {
