@@ -11,7 +11,7 @@ export const SearchContext = createContext();
 
 function Home() {
     useEffect(() => {
-        document.title = 'Home | Tabernia';
+        document.title = 'Store | Tabernia';
     }, []);
 
     const { data } = useApi('https://api.noroff.dev/api/v1/online-shop');
