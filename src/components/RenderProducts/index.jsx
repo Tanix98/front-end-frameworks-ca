@@ -16,6 +16,16 @@ function RenderProducts() {
         'https://api.noroff.dev/api/v1/online-shop'
     );
 
+    const filteredData = data.filter((product) => {
+        if (searchTerm === '') {
+            return product;
+        }
+        if (product.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return product;
+        }
+        return false;
+    });
+
     if (isLoading) {
         return (
             <div id='main' className='text-center'>
@@ -35,21 +45,8 @@ function RenderProducts() {
 
     return (
         <div className='d-flex justify-content-center flex-wrap gap-4 text-break'>
-            {data
-                .filter((product) => {
-                    if (searchTerm === '') {
-                        return product;
-                    }
-                    if (
-                        product.title
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase())
-                    ) {
-                        return product;
-                    }
-                    return false;
-                })
-                .map((product, key) => (
+            {filteredData.length > 0 ? (
+                filteredData.map((product, key) => (
                     <div className='product-card mt-3 bg-white p-3' key={key}>
                         <Link
                             to={{
@@ -115,7 +112,10 @@ function RenderProducts() {
                             </Button>
                         </div>
                     </div>
-                ))}
+                ))
+            ) : (
+                <h4 className='mt-4'>No results</h4>
+            )}
         </div>
     );
 }

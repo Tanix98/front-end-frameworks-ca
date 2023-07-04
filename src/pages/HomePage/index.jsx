@@ -1,7 +1,7 @@
 import './styles.css';
 import useApi from '../../api/useApi/index';
 import RenderProducts from '../../components/RenderProducts/index';
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState, createContext, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
@@ -21,9 +21,23 @@ function Home() {
     const [filteredData, setFilteredData] = useState([]);
     const [searchWord, setSearchWord] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-    /*const [focused, setFocused] = useState(false);
-    const onFocus = () => setFocused(true);
-    const onBlur = () => setFocused(false);*/
+    const searchBarRef = useRef(null);
+
+    useEffect(() => {
+        function handleOutsideClick(event) {
+            if (
+                searchBarRef.current &&
+                !searchBarRef.current.contains(event.target)
+            ) {
+                setFilteredData([]);
+            }
+        }
+
+        document.addEventListener('click', handleOutsideClick);
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, []);
 
     function handleKeyDown(event) {
         if (event.keyCode === 13) {
@@ -49,6 +63,7 @@ function Home() {
 
     function search() {
         setSearchTerm(searchWord);
+        setFilteredData([]);
     }
 
     return (
@@ -63,8 +78,9 @@ function Home() {
                             value={searchWord}
                             onChange={handleFilter}
                             onKeyDown={handleKeyDown}
-                            /*onFocus={onFocus}
-                            onBlur={onBlur}*/
+                            onFocus={handleFilter}
+                            ref={searchBarRef}
+                            onClick={handleFilter}
                         />
                         <Button variant='dark' onClick={search}>
                             Search
